@@ -30,10 +30,19 @@ async function run() {
     await client.connect();
     const craftCollection = client.db("ArtHub_DB").collection("Crafts")
 
+    app.get('/matchingSubCategory/:subcategory', async(req,res)=>{
+        const subcategory = req.params.subcategory;
+        console.log('route hit', subcategory);
+        const query = {subcategory_name : subcategory}
+        const result = await craftCollection.find(query).toArray();
+        console.log(result);
+        res.send(result)
+    })
+
     app.get('/craftsCards', async(req,res)=>{
         const cursor = craftCollection.find()
         const result = await cursor.toArray();
-        console.log(result);
+        // console.log(result);
         res.send(result)
     })
 
@@ -41,7 +50,7 @@ async function run() {
         const email = req.params.email;
         const query = {email : email}
         const result = await craftCollection.find(query).toArray();
-        console.log(result);
+        // console.log(result);
         res.send(result)
     })
 
@@ -49,7 +58,7 @@ async function run() {
         const id = req.params.id;
         const query = {_id : new ObjectId(id)}
         const result = await craftCollection.findOne(query)
-        res.send(result)
+        // res.send(result)
     })
 
     app.put('/updateExistingCraft/:id', async(req,res)=>{
@@ -86,7 +95,7 @@ async function run() {
         const id = req.params.id;
         const query = {_id : new ObjectId(id)}
         const result = await craftCollection.findOne(query)
-        console.log(result);
+        // console.log(result);
         res.send(result)
     })
 
