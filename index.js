@@ -9,7 +9,7 @@ const port = process.env.PORT || 5000;
 
 
 app.use(cors({
-    origin: ["http://localhost:5173" , "https://art-hub-server.vercel.app"]
+    origin: ["http://localhost:5173" , "https://art-hub-server.vercel.app" , "https://arthub-d9977.web.app"]
 }))
 app.use(express.json())
 
